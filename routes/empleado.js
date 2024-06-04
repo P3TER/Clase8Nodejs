@@ -98,6 +98,17 @@ module.exports = {
             res.redirect('/');
         });
     },
+    reactivarEmpleado: (req, res) => {
+        let id = req.params.id_empleado
+        let stmtActivar = `UPDATE empleados SET estado = true WHERE id_empleado = ${id}`
+
+        bd.query(stmtActivar, (err, result) => {
+            if (err) {
+                return res.status(500).send(err)
+            }
+            res.redirect('/')
+        })
+    },
     eliminarEmpleado: (req, res) => {
         let id_empleado = req.params.id_empleado
         let stmtEliminar = `UPDATE empleados SET estado = false WHERE id_empleado = ${id_empleado}`

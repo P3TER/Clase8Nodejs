@@ -35,6 +35,9 @@
                 <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                     href="/agregar" class="float-right" title="Agregar un nuevo empleado">Agregar
                     Empleado</a>
+                    <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    href="/agregarNomina" class="float-right" title="Agregar un nuevo empleado">Agregar
+                    Nomina</a>
             </nav>
         </header>
         <div class="container">
@@ -57,7 +60,8 @@
                         </thead>
                         <tbody>
                             <% empleados.forEach(function(empleado) { %>
-                                <tr>
+                                <% if (empleado.estado == 1) { %>
+                                    <tr>
                                     <td>
                                         <%= empleado.id_empleado %>
                                     </td>
@@ -86,18 +90,93 @@
                                             <% } %>
                                     </td>
                                     <td>
-                                        <a href="/editar_emp/<%= empleado.id_empleado %>" class="btn btn-outline-light">Editar</a>
-                                        <a href="/eliminar_emp/<%= empleado.id_empleado %>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar a este empleado?')">Eliminar</a>
+                                        <a href="/editar_emp/<%= empleado.id_empleado %>"
+                                            class="btn btn-outline-light">Editar</a>
+                                        <a href="/eliminar_emp/<%= empleado.id_empleado %>" class="btn btn-danger"
+                                            onclick="return confirm('¿Estás seguro de que deseas eliminar a este empleado?')">Eliminar</a>
 
                                     </td>
                                 </tr>
+                                <% } else {  %>
+                                    <tr>
+                                        <td>
+                                            <%= empleado.id_empleado %>
+                                        </td>
+                                        <td>
+                                            <%= empleado.identificacion %>
+                                        </td>
+                                        <td>
+                                            <%= empleado.nombres %>
+                                        </td>
+                                        <td>
+                                            <%= empleado.apellidos %>
+                                        </td>
+                                        <td>
+                                            <%= empleado.correo %>
+                                        </td>
+                                        <td>
+                                            <%= empleado.direccion %>
+                                        </td>
+                                        <td>
+                                            <%= empleado.telefono %>
+                                        </td>
+                                        <td>
+                                            <% if (empleado.fotografia) { %>
+                                                <img src="/assets/img/<%= empleado.fotografia %>" class="img-thumbnail"
+                                                    alt="Fotografía del empleado" style="width: 50px; height: 50px;">
+                                                <% } %>
+                                        </td>
+                                        <td>
+                                            <a href="/reactivar/<%= empleado.id_empleado %>"
+                                                class="btn btn-outline-light">Restaurar</a>
+    
+                                        </td>
+                                    </tr>
+                                <% } %>
                                 <% }); %>
                         </tbody>
                     </table>
-                    <% } else { %>
+
+                    <% if (nominas.length > 0) { %>
+                        <table class="table table-dark table-hover align-middle text-center">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Fecha Nomina</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Salario Base</th>
+                                    <th scope="col">Salud</th>
+                                    <th scope="col">Pensión</th>
+                                    <th scope="col">Salario Neto</th>
+                                    <th scope="col">Comisiones</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% nominas.forEach(function(nomina) { %>
+                                    <tr>
+                                        <td><%= nomina.id_nomina %></td>
+                                        <td><%= nomina.fecha_nomina %></td>
+                                        <td><%= nomina.id_empleado %></td>
+                                        <td><%= nomina.salario_base %></td>
+                                        <td><%= nomina.deduccion_salud %></td>
+                                        <td><%= nomina.deduccion_pension %></td>
+                                        <td><%= nomina.salario_neto %></td>
+                                        <td><%= nomina.comisiones %></td>
+                                        <td>
+                                            <a href="/editar_nom/<%= nomina.id_nomina %>"
+                                                class="btn btn-outline-light">Editar Nómina</a>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    <% }} else { %>
                         <p class="text-center">No se han encontrado empleados. Click <a href="/agregar">aquí</a> para
                             agregar.</p>
-                        <% } %>
+
+                            
+                            <% } %>
             </div>
         </div>
     </div>
