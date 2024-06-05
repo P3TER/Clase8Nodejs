@@ -11,3 +11,5 @@ Si vas a trabajar con nodemon tengo un script para ello, y al igual que on lo an
 npm i nodemon -D
 
 npm run dev
+
+Si necesitas cambiar el servidor de mysql ve al archivo app.js en la linea 16
