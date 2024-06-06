@@ -13,3 +13,7 @@ npm i nodemon -D
 npm run dev
 
 Si necesitas cambiar el servidor de mysql ve al archivo app.js en la linea 16
+
+Si deseas usar el git clone aqui te dejo directamente el link de mi repositorio
+
+https://github.com/P3TER/Clase8Nodejs
