@@ -14,7 +14,7 @@ const PUERTO = process.env.PORT || 3300
 
 const bd = mysql.createConnection({
     host: 'localhost',
-    port: 3308,
+    port: 3306,
     user: 'root',
     password: '',
     database: 'empleadosbd'

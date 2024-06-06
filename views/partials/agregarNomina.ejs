@@ -23,14 +23,17 @@
             margin-top: 50px;
         }
 
-        .arriba{
+        .arriba {
             display: flex;
             flex-direction: row;
         }
-        .lados{
+
+        .lados {
             width: 35%;
         }
-        form input, form select{
+
+        form input,
+        form select {
             margin-bottom: 20px;
         }
     </style>
@@ -40,10 +43,14 @@
     <div class="page-wrapper">
         <header>
             <nav class="navbar bg-dark">
-                <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/">Empleados</a>
-                <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/agregar">Agregar Empleado</a>
-                <span class="navbar-brand mb-0 h1"><a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/agregar" class="float-right" title="Agregar un nuevo empleado">Agregar
-                    Nómina</a></span>
+                <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    href="/">Empleados</a>
+                <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    href="/agregar">Agregar Empleado</a>
+                <span class="navbar-brand mb-0 h1"><a
+                        class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                        href="/agregar" class="float-right" title="Agregar un nuevo empleado">Agregar
+                        Nómina</a></span>
             </nav>
         </header>
         <div class="container">
@@ -51,33 +58,32 @@
                 <p class="text-center text-danger">
                     <% message %>
                 </p>
-                <% } %>
-                <section class="arriba mt-4">
-                    <article class="lados"></article>
-                    <form action="/agregar_nom" method="post" enctype="multipart/form-data"
-                        class="card text-bg-dark text-center mb-3">
-                        <h2 class="card-tittle">Agregar Nómina De Empleado</h2>
-                        <article class="card-body">
-                                <input type="date" class="form-control" name="fecha_nomina" id="fecha_nomina"  required>
-                                <select name="id_empleado" id="id_empleado" required class="form-select">
-                                    <option selected>Seleccione el empleado</option>
-                                    <% empleados.forEach(function(empleado){ %>
-                                        <option value="<%= empleado.id_empleado %>"><%= empleado.id_empleado %> - <%= empleado.nombres %></option>
-                                    <% }) %>
-                                </select>
-                                <input type="text" class="form-control" name="salario_base" id="salario_base"
-                                    placeholder="Salario Base" required>
-                                <input type="text" class="form-control" name="deduccion_salud" id="deduccion_salud" placeholder="Salud (%)"
-                                    required>
-                                <input type="text" class="form-control" name="deduccion_pension" id="deduccion_pension"
-                                    placeholder="Pensión (%)" required>
-                                <input type="text" class="form-control" name="comisiones" id="comisiones"
-                                    placeholder="Comisiones (%)" required>
-                                <input type="submit" class="btn btn-outline-light" value="Agregar Nómina">
-                            </article>
-                    </form>
-                    <article class="lados"></article>                    
-                </section>
+            <% } %>
+            <section class="arriba mt-4">
+                <article class="lados"></article>
+                <form action="/agregar_nom" method="post" enctype="multipart/form-data"
+                    class="card text-bg-dark text-center mb-3">
+                    <h2 class="card-tittle">Agregar Nómina De Empleado</h2>
+                    <article class="card-body">
+                        <select name="id_empleado" id="id_empleado" required class="form-select">
+                            <option selected>Seleccione el empleado</option>
+                            <% empleados.forEach(function(empleado){ %>
+                                <option value="<%= empleado.id_empleado %>"><%= empleado.id_empleado %> - <%= empleado.nombres %></option>
+                            <% }) %>
+                        </select>
+                        <input type="text" class="form-control" name="salario_base" id="salario_base"
+                            placeholder="Salario Base" required>
+                        <input type="text" class="form-control" name="deduccion_salud" id="deduccion_salud"
+                            placeholder="Salud (%)" required>
+                        <input type="text" class="form-control" name="deduccion_pension" id="deduccion_pension"
+                            placeholder="Pensión (%)" required>
+                        <input type="text" class="form-control" name="comisiones" id="comisiones"
+                            placeholder="Comisiones (%)" required>
+                        <input type="submit" class="btn btn-outline-light" value="Agregar Nómina">
+                    </article>
+                </form>
+                <article class="lados"></article>
+            </section>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
